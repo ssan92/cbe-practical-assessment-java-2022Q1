@@ -9,6 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -32,6 +35,13 @@ public class StoreControllerTest {
         when(storeService.findByName(any())).thenReturn(StorePresenter.builder().id(1).build());
         StorePresenter fakeName = storeController.findByName("fake name");
         Assertions.assertEquals(1, fakeName.getId());
+    }
+
+    @Test
+    public void shouldFindAll() {
+        when(storeService.findAll()).thenReturn(Arrays.asList(StorePresenter.builder().id(1).build()));
+        List<StorePresenter> stores = storeController.findAll();
+        Assertions.assertEquals(1, stores.size());
     }
 
     @Test
