@@ -8,50 +8,47 @@ import java.util.Date;
 @Table(name = "user")
 public class UserEntity implements Serializable {
 
-    public UserEntity() {
-    }
+  public UserEntity() {}
 
-    public UserEntity(Long id, String usuario, Date creationDate) {
-        this.id = id;
-        this.usuario = usuario;
-        this.creationDate = creationDate;
-    }
+  public UserEntity(Long id, String usuario, Date creationDate) {
+    this.id = id;
+    this.usuario = usuario;
+    this.creationDate = creationDate;
+  }
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(unique = true)
+  private Long id;
 
-    private String usuario;
+  private String usuario;
 
-    @Column(name = "creation_date")
-    private Date creationDate;
+  @Column(name = "creation_date")
+  private Date creationDate;
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getUsuario() {
-        return usuario;
-    }
+  public String getUsuario() {
+    return usuario;
+  }
 
-    public void setUsuario(String description) {
-        this.usuario = description;
-    }
+  public void setUsuario(String description) {
+    this.usuario = description;
+  }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+  public Date getCreationDate() {
+    return creationDate;
+  }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-
+  public void setCreationDate(Date creationDate) {
+    this.creationDate = creationDate;
+  }
 }

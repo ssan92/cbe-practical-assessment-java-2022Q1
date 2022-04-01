@@ -7,64 +7,57 @@ import java.io.Serializable;
 @Table(name = "market")
 public class MarketEntity implements Serializable {
 
+  private static final long serialVersionUID = 1L;
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(unique = true)
+  private Integer id;
 
-    private static final long serialVersionUID = 1L;
+  private String name;
+  private String category;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "user_id")
+  private UserEntity userEntity;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true)
-    private Integer id;
+  public Integer getId() {
+    return id;
+  }
 
-    private String name;
-    private String category;
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+  public String getName() {
+    return name;
+  }
 
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public String getCategory() {
+    return category;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setCategory(String category) {
+    this.category = category;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public UserEntity getUserEntity() {
+    return userEntity;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setUserEntity(UserEntity userEntity) {
+    this.userEntity = userEntity;
+  }
 
-    public String getCategory() {
-        return category;
-    }
+  public MarketEntity() {}
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
-
-    public MarketEntity() {
-
-    }
-
-    public MarketEntity(String name, String category, UserEntity userEntity) {
-        this.name = name;
-        this.category = category;
-        this.userEntity = userEntity;
-    }
-
+  public MarketEntity(String name, String category, UserEntity userEntity) {
+    this.name = name;
+    this.category = category;
+    this.userEntity = userEntity;
+  }
 }
