@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -19,17 +18,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @TestPropertySource(
         locations = "classpath:integration.yml")
-public class CountryIntegrationTest {
+public class StoreIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void shouldFindAll() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+    public void shouldSaveNewStoreToInitialUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/store")
+                        .contentType(MediaType.APPLICATION_JSON).content("{\n" +
+                                "    \"id\": \"1\",\n" +
+                                "    \"name\": \"First Store\",\n" +
+                                "    \"category\": \"First Category\",\n" +
+                                "    \"userPresenter\": {\n" +
+                                "        \"id\": \"1\"\n" +
+                                "    }\n" +
+                                "}"))
                 .andExpect(status().isOk());
     }
 }
