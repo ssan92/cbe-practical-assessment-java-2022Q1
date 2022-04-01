@@ -1,14 +1,11 @@
 package com.pichincha.evaluacion.practica.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Objects;
 
-/**
- * ApiError
- */
+
 @Validated
 public class ApiError {
     @JsonProperty("type")
