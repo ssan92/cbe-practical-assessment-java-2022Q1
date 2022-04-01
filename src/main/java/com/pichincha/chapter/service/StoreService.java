@@ -1,6 +1,5 @@
 package com.pichincha.chapter.service;
 
-import com.pichincha.chapter.domain.dto.store.response.StoreProductDetailTo;
 import com.pichincha.chapter.domain.jpa.Store;
 
 public interface StoreService {
@@ -13,5 +12,5 @@ public interface StoreService {
 
     void deleteStoreWithoutProducts(Long codStore);
 
-    StoreProductDetailTo assignProductsToStore(Long codStore);
+    void assignProductsToStore(Long codStore);
 }

@@ -1,5 +1,6 @@
 package com.pichincha.chapter.domain.jpa;
 
+import com.pichincha.chapter.domain.dto.store.response.ProductIdNameTo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,5 +32,10 @@ public class Product {
 
     @Column(name = "STOCK")
     private Integer stock;
+
+    @Transient
+    public ProductIdNameTo getIdName() {
+        return ProductIdNameTo.builder().id(getId()).name(getName()).build();
+    }
 
 }

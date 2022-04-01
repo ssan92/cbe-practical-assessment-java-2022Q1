@@ -22,7 +22,7 @@ public class StoreController {
     public ResponseEntity assignProductsToStore(@PathVariable("codStore") Long codStore) {
         log.info("codStore: " + codStore);
         storeService.assignProductsToStore(codStore);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
 }

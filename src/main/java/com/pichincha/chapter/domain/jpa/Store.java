@@ -29,5 +29,10 @@ public class Store {
     @Column(name = "OWNER")
     private String owner;
 
+    @Transient
+    public Store getNameCodStore() {
+        return Store.builder().cod(getCod()).name(getName()).build();
+    }
+
 
 }
