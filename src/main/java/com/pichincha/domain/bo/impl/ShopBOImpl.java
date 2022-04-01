@@ -1,5 +1,7 @@
 package com.pichincha.domain.bo.impl;
 
+import java.util.List;
+
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +14,11 @@ import com.pichincha.application.exceptions.BOException;
 import com.pichincha.application.useful.GenericUseful;
 import com.pichincha.application.useful.ValidateJpaUseful;
 import com.pichincha.domain.bo.IShopBO;
+import com.pichincha.domain.dao.IShopsByProductsDAO;
+import com.pichincha.domain.dao.IShopsByProductsDAO;
 import com.pichincha.domain.dao.IShopsDAO;
 import com.pichincha.infraestructura.entity.Shops;
+import com.pichincha.infraestructura.entity.ShopsByProducts;
 
 @Service
 public class ShopBOImpl implements IShopBO {
@@ -22,6 +27,8 @@ public class ShopBOImpl implements IShopBO {
 	private IShopsDAO objIShopsDAO;
 	@Autowired
 	private ValidateJpaUseful objValidateJpaUseful;
+	@Autowired
+	private IShopsByProductsDAO objIShopsByProductsDAO;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class}) 
@@ -67,6 +74,19 @@ public class ShopBOImpl implements IShopBO {
 		//Validate required fields
 		GenericUseful.validateFieldRequired(intId, "msg.field.id");
 		return objIShopsDAO.findById(intId).orElse(null);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class}) 
+	public void deleteShop(Integer intId) throws BOException {
+		
+		List<ShopsByProducts> lsShopsByProducts=objIShopsByProductsDAO.findShopsByProductsByShops(intId);
+		if(!ObjectUtils.isEmpty(lsShopsByProducts)) {
+			throw new BOException("msg.warn.noDeleteShops");
+		}
+		
+		objIShopsDAO.deleteById(intId);
+		
 	}
 
 }

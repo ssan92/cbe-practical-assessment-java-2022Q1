@@ -35,4 +35,13 @@ public interface IShopBO {
 	 */
 	public Shops getShopById(Integer intId)throws BOException;
 
+	/**
+	 * Delete shop whitout products
+	 * 
+	 * @author Bryan Zamora
+	 * @param intId
+	 * @throws BOException
+	 */
+	public void deleteShop(Integer intId)throws BOException;
+
 }

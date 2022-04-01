@@ -77,4 +77,21 @@ public class ShopController {
 		}
 	
 	}
+	
+	@RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteShop(
+			@RequestHeader(	value = "Accept-Language", 	required = false) String strLanguage, 
+			@PathVariable(	value = "id",required = false) Integer intId
+			) throws BOException {
+		
+		try {	
+			objIShopBO.deleteShop(intId);
+			return new ResponseEntity<>(new ResponseOkDTO(
+					MessagesUseful.getMessage(HTTP_OK, MessagesUseful.validateSupportedLocale(strLanguage)),
+					new HashMap<>()), HttpStatus.OK);
+		} catch (BOException be) {
+			throw new CustomExceptionHandler(be.getTranslatedMessage(strLanguage), be.getData());
+		}
+	
+	}
 }
