@@ -16,7 +16,6 @@
 	<properties>
 		<java.version>11</java.version>
 		<testcontainers.version>1.16.2</testcontainers.version>
-		<sonar.coverage.exclusions>**/**</sonar.coverage.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -56,6 +55,12 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>mysql</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -106,7 +111,7 @@
 					</execution>
 					<execution>
 						<id>jacoco-site</id>
-						<phase>verify</phase>
+						<phase>test</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
