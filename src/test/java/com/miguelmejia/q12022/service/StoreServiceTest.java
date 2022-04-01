@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -33,6 +34,9 @@ public class StoreServiceTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private ProductService productService;
 
     @Spy
     private ModelMapper modelMapper = new ModelMapper();
@@ -54,6 +58,7 @@ public class StoreServiceTest {
     @Test
     public void shouldFindByName() {
         when(storeRepository.findByName(any())).thenReturn(Store.builder().id(1).user(User.builder().build()).build());
+        when(productService.findAllByStore(any())).thenReturn(new ArrayList<>());
         StorePresenter fakeName = storeService.findByName("fakeName");
         Assertions.assertEquals(1, fakeName.getId());
     }
