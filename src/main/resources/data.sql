@@ -1,1 +1,1 @@
-INSERT INTO countries (id, name) VALUES (1, 'Ecuador');
+INSERT INTO users (id, username, creation_date) VALUES (1, 'mmejia', '2022-04-01');
