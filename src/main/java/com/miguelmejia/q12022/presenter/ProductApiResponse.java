@@ -11,10 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StorePresenter {
-    private long id;
-    private String name;
-    private String category;
-    private UserPresenter userPresenter;
-    private List<ProductPresenter> products;
+public class ProductApiResponse {
+    private List<ProductPresenter> prods;
 }

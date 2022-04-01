@@ -1,10 +1,14 @@
+app:
+  config:
+    productsDomain: https://253b6042-ec17-4ee8-8d7d-ea9d62805337.mock.pstmn.io
+    productsEndPoint: /dummy-products
 server:
   error:
     include-message: always
 spring:
   datasource:
     #url: jdbc:h2:mem:mydb
-    url: jdbc:h2:file:./mydb
+    url: jdbc:h2:file:./mydb2
     username: sa
     password: password
     driverClassName: org.h2.Driver

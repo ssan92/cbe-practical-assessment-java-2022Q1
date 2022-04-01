@@ -2,6 +2,7 @@ package com.miguelmejia.q12022.service.impl;
 
 import com.miguelmejia.q12022.entity.Store;
 import com.miguelmejia.q12022.entity.User;
+import com.miguelmejia.q12022.presenter.ProductPresenter;
 import com.miguelmejia.q12022.presenter.StorePresenter;
 import com.miguelmejia.q12022.presenter.UserPresenter;
 import com.miguelmejia.q12022.repository.StoreRepository;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 @Service
 public class StoreServiceImpl implements StoreService {
@@ -37,6 +41,11 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public Store findById(Long id) {
+        return storeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No existe la tienda con este Id"));
+    }
+
+    @Override
     public void update(StorePresenter storePresenter) {
         Store store = storeRepository.findById(storePresenter.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No existe la tienda a modificar"));
         User user = userRepository.findById(storePresenter.getUserPresenter().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No Existe el usuario con este Id"));
@@ -46,6 +55,16 @@ public class StoreServiceImpl implements StoreService {
         storeRepository.save(store);
     }
 
+    @Override
+    public void deleteEmptyStore(Long id) {
+        Store store = storeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No existe la tienda a modificar"));
+        if (store.getProducts().isEmpty()) {
+            storeRepository.delete(store);
+        } else {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "La tienda no se encuentra vacía");
+        }
+    }
+
     private Store fromPresenter(StorePresenter storePresenter) {
         return modelMapper.map(storePresenter, Store.class);
     }
@@ -53,6 +72,7 @@ public class StoreServiceImpl implements StoreService {
     private StorePresenter toPresenter(Store store) {
         StorePresenter storePresenter = modelMapper.map(store, StorePresenter.class);
         storePresenter.setUserPresenter(modelMapper.map(store.getUser(), UserPresenter.class));
+        storePresenter.setProducts(store.getProducts().stream().map(product -> modelMapper.map(product, ProductPresenter.class)).collect(Collectors.toList()));
         return storePresenter;
     }
 }

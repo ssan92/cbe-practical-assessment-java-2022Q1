@@ -1,5 +1,6 @@
 package com.miguelmejia.q12022.service;
 
+import com.miguelmejia.q12022.entity.Store;
 import com.miguelmejia.q12022.presenter.StorePresenter;
 
 public interface StoreService {
@@ -7,5 +8,9 @@ public interface StoreService {
 
     StorePresenter findByName(String name);
 
+    Store findById(Long id);
+
     void update(StorePresenter storePresenter);
+
+    void deleteEmptyStore(Long id);
 }

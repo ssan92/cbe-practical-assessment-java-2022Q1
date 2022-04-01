@@ -25,4 +25,9 @@ public class StoreController {
     public void updateStore(@RequestBody StorePresenter storePresenter) {
         storeService.update(storePresenter);
     }
+
+    @DeleteMapping("/store")
+    public void deleteEmptyStore(@RequestParam Long id) {
+        storeService.deleteEmptyStore(id);
+    }
 }

@@ -6,25 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "stores")
-public class Store {
+@Table(name = "products")
+public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private String cod;
     private String name;
-    private String category;
+    private double price;
+    private long stock;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private List<Product> products;
-
+    @JoinColumn(name = "store_id")
+    private Store store;
 }
