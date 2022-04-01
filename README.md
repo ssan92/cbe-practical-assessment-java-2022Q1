@@ -55,7 +55,7 @@ Crear una API Rest que permita
 - Cargar productos a base de datos.
   - Crear endpoint que permita crear base de productos a partir de un servicio mock
     - Input identificador único de la tienda. 
-    - Url mock tipo de petición POST: [Productos](https://253b6042-ec17-4ee8-8d7d-ea9d62805337.mock.pstmn.io/dummy-products)
+    - Url mock tipo de petición GET: [Productos](https://253b6042-ec17-4ee8-8d7d-ea9d62805337.mock.pstmn.io/dummy-products)
   - Reglas de negocio:
     - Los productos se asignarán a la tienda especificada.
     - Solo deben registrar los productos con stock superior a 5.
