@@ -16,6 +16,11 @@
 	<properties>
 		<java.version>11</java.version>
 		<testcontainers.version>1.16.2</testcontainers.version>
+		<sonar.coverage.exclusions>
+			**/BackendTestApplication.java,
+			**/dto/*.java,
+			**/entities/*.java
+		</sonar.coverage.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
