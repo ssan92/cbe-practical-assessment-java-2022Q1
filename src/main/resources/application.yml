@@ -1,0 +1,21 @@
+application:
+  product-url: 'https://253b6042-ec17-4ee8-8d7d-ea9d62805337.mock.pstmn.io/dummy-products'
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:store
+    username: store
+    password: store
+    driverClassName: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        default_schema:
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+  flyway:
+    enabled: false
