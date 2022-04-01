@@ -3,6 +3,7 @@ package com.pichincha.evaluacion.practica.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +29,5 @@ public class ProductEntity {
     private String stock;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ProductXUserEntity productXUserEntity;
+    private List<ProductXUserEntity> productXUserEntity;
 }

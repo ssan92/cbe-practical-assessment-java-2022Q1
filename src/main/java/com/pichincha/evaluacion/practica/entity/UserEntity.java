@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,5 +26,5 @@ public class UserEntity {
     private LocalDate createdDate;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ProductXUserEntity productXUserEntity;
+    private List<ProductXUserEntity> productXUserEntity;
 }

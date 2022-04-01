@@ -23,7 +23,7 @@ public class ProductXUserEntity {
     @JoinColumn(name = "report_id", referencedColumnName = "report_id", nullable = false)
     private ReportEntity report;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "report_id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private UserEntity user;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
