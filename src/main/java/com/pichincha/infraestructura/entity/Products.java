@@ -1,7 +1,6 @@
-package com.pichincha.infraestructura;
+package com.pichincha.infraestructura.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,20 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Proxy;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Entity implementation class for Entity: Shops
+ * Entity implementation class for Entity: requirements
  *
  */
 @Entity
 @Getter
 @Setter
-@Table(name = "shops")
-public class Shops implements Serializable {
+@Table(name = "products")
+@Proxy(lazy=false)
+public class Products implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,18 +35,15 @@ public class Shops implements Serializable {
     @Column(name = "id")
     private Integer id;
 	
-    @Column(name = "name")
+	@Size(max=500)
+	@Column(name = "name")
     private String name;
-    
-    @Column(name = "category")
-    private String category;
-    
-    @Column(name = "user")
-    private String user;
-    
+	
+    @Column(name = "amount")
+    private Integer amount;
+	   
 	@Size(max=1)
 	@JsonIgnore
 	@Column(name = "state")
     private String state;
-	
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.pichincha.application.exceptions.BOException;
 import com.pichincha.domain.dao.IUsersDAO;
-import com.pichincha.infraestructura.Users;
+import com.pichincha.infraestructura.entity.Users;
 
 @Service
 public class ValidateJpaUseful {

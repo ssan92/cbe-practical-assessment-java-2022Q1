@@ -13,7 +13,7 @@ import com.pichincha.application.useful.GenericUseful;
 import com.pichincha.application.useful.ValidateJpaUseful;
 import com.pichincha.domain.bo.IShopBO;
 import com.pichincha.domain.dao.IShopsDAO;
-import com.pichincha.infraestructura.Shops;
+import com.pichincha.infraestructura.entity.Shops;
 
 @Service
 public class ShopBOImpl implements IShopBO {

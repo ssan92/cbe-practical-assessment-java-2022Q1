@@ -3,7 +3,7 @@ package com.pichincha.domain.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.pichincha.infraestructura.Users;
+import com.pichincha.infraestructura.entity.Users;
 
 public interface IUsersDAO extends JpaRepository<Users, String>{
 	

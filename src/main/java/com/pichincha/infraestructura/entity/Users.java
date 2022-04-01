@@ -1,4 +1,4 @@
-package com.pichincha.infraestructura;
+package com.pichincha.infraestructura.entity;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -2,7 +2,7 @@ package com.pichincha.domain.bo;
 
 import com.pichincha.application.dto.shop.ShopRequestDTO;
 import com.pichincha.application.exceptions.BOException;
-import com.pichincha.infraestructura.Shops;
+import com.pichincha.infraestructura.entity.Shops;
 
 public interface IShopBO {
 	/**
