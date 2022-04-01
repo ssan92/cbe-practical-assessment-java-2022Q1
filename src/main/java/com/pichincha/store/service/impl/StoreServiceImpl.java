@@ -1,20 +1,16 @@
 package com.pichincha.store.service.impl;
 
+import com.pichincha.store.domain.Product;
 import com.pichincha.store.domain.Store;
 import com.pichincha.store.domain.dto.ProductDto;
 import com.pichincha.store.domain.dto.StoreDto;
-import com.pichincha.store.domain.dto.UserDto;
 import com.pichincha.store.domain.dto.legaci.Response;
 import com.pichincha.store.domain.enums.StoreStatus;
 import com.pichincha.store.repository.ProductRepository;
 import com.pichincha.store.repository.StoreRepository;
 import com.pichincha.store.repository.UserRepository;
 import com.pichincha.store.service.StoreService;
-import com.pichincha.store.service.UserService;
 import com.pichincha.store.service.mapper.StoreMapper;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import javax.persistence.NoResultException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -78,9 +74,15 @@ public class StoreServiceImpl implements StoreService {
 
   @Override
   public String loadProducts(Long storeId) {
-//    Store store = storeRepository.getStoreById(storeId,StoreStatus.ACTIVE.name()).orElseThrow(()-> new NoResultException("store not found"));
+    Store store = storeRepository.getStoreById(storeId,StoreStatus.ACTIVE.name()).orElseThrow(()-> new NoResultException("store not found"));
 
     Response products = productRepository.getProducts();
+
+    // map products and add to store
+    products.getProds().stream()
+        .filter(pr-> pr.getStock() > 5)
+        .map( pr -> Product.builder().build());
+
     return null;
   }
 }

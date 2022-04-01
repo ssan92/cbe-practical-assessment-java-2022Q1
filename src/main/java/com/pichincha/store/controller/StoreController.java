@@ -1,12 +1,9 @@
 package com.pichincha.store.controller;
 
 import com.pichincha.store.domain.dto.StoreDto;
-import com.pichincha.store.service.MvcService;
 import com.pichincha.store.service.StoreService;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,6 +1,5 @@
 package com.pichincha.store.service.impl;
 
-import com.pichincha.store.domain.User;
 import com.pichincha.store.domain.dto.UserDto;
 import com.pichincha.store.repository.UserRepository;
 import com.pichincha.store.service.UserService;

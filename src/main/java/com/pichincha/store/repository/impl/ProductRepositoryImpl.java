@@ -4,11 +4,8 @@ package com.pichincha.store.repository.impl;
 
 import com.google.gson.Gson;
 import com.pichincha.store.configuration.Properties;
-import com.pichincha.store.domain.dto.ProductDto;
 import com.pichincha.store.domain.dto.legaci.Response;
 import com.pichincha.store.repository.ProductRepository;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

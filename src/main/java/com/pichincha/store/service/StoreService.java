@@ -1,7 +1,6 @@
 package com.pichincha.store.service;
 
 import com.pichincha.store.domain.dto.StoreDto;
-import java.util.List;
 
 public interface StoreService {
 

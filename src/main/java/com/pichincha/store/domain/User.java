@@ -2,7 +2,6 @@ package com.pichincha.store.domain;
 
 import static lombok.AccessLevel.PRIVATE;
 
-
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
