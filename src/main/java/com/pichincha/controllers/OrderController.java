@@ -2,7 +2,7 @@ package com.pichincha.controllers;
 
 import com.pichincha.domains.dto.RequestOrderDto;
 import com.pichincha.domains.mappers.ControllerMapper;
-import com.pichincha.services.IProductService;
+import com.pichincha.services.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderController {
 
-  private final IProductService productService;
+  private final IOrderService orderService;
   private final ControllerMapper controllerMapper;
 
   @PostMapping("/save")
   public ResponseEntity<Object> saveShop(@RequestBody RequestOrderDto orderDto) {
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    return new ResponseEntity<>(
+        orderService.saveOrder(controllerMapper.toRequestOrderDto(orderDto)), HttpStatus.CREATED);
   }
 }
