@@ -8,4 +8,6 @@ public interface ProductService {
     void generateStock(Long id);
 
     List<ProductPresenter> findAll();
+
+    List<ProductPresenter> findAllByStore(Long storeId);
 }

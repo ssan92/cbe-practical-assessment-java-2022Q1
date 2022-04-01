@@ -2,11 +2,11 @@ package com.miguelmejia.q12022.service.impl;
 
 import com.miguelmejia.q12022.entity.Store;
 import com.miguelmejia.q12022.entity.User;
-import com.miguelmejia.q12022.presenter.ProductPresenter;
 import com.miguelmejia.q12022.presenter.StorePresenter;
 import com.miguelmejia.q12022.presenter.UserPresenter;
 import com.miguelmejia.q12022.repository.StoreRepository;
 import com.miguelmejia.q12022.repository.UserRepository;
+import com.miguelmejia.q12022.service.ProductService;
 import com.miguelmejia.q12022.service.StoreService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +24,8 @@ public class StoreServiceImpl implements StoreService {
     private UserRepository userRepository;
     @Autowired
     private StoreRepository storeRepository;
+    @Autowired
+    private ProductService productService;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -58,11 +60,16 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public void deleteEmptyStore(Long id) {
         Store store = storeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No existe la tienda a modificar"));
-        if (store.getProducts().isEmpty()) {
+        if (productService.findAllByStore(id).isEmpty()) {
             storeRepository.delete(store);
         } else {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "La tienda no se encuentra vacía");
         }
+    }
+
+    @Override
+    public List<StorePresenter> findAll() {
+        return storeRepository.findAll().stream().map(this::toPresenter).collect(Collectors.toList());
     }
 
     private Store fromPresenter(StorePresenter storePresenter) {
@@ -72,7 +79,7 @@ public class StoreServiceImpl implements StoreService {
     private StorePresenter toPresenter(Store store) {
         StorePresenter storePresenter = modelMapper.map(store, StorePresenter.class);
         storePresenter.setUserPresenter(modelMapper.map(store.getUser(), UserPresenter.class));
-        storePresenter.setProducts(store.getProducts().stream().map(product -> modelMapper.map(product, ProductPresenter.class)).collect(Collectors.toList()));
+        storePresenter.setProducts(productService.findAllByStore(store.getId()));
         return storePresenter;
     }
 }
