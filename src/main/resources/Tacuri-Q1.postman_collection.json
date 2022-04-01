@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "8fbe98a8-2f9e-4dcc-9a8d-cfb73aeecef7",
+		"name": "Tacuri-Q1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Shop",
+			"item": [
+				{
+					"name": "GET SHOP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/shop/01",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"shop",
+								"01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE SHOP",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/shop/01",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"shop",
+								"01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST save-shop",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"14\",\r\n    \"shopName\": \"TEST\",\r\n    \"category\": \"01\",\r\n    \"identificationOwner\": \"1724585763\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/shop/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"shop",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE PRODUCT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idShop\": \"01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/product/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"product",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE ORDER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identification\": \"01\",\r\n    \"isShop\": \"01\",\r\n    \"prods\": [\r\n        {\r\n            \"id\": 10,\r\n            \"amount\": 15\r\n        },\r\n        {\r\n            \"idProd\": 20,\r\n            \"amount\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/order/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"order",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
