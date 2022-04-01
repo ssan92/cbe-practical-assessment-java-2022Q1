@@ -1,13 +1,11 @@
 package com.pichincha.centrodigital.chapter.eva.entity;
 
-import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -20,21 +18,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "userEntity")
-public class UserEntity {
+@Table(name = "product")
+public class ProductEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column(name = "user_name")
-  private String userName;
+  private String cod;
 
-  @Column(name = "create_time")
-  private LocalDateTime createTime = LocalDateTime.now();
+  private String name;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "shop_id", referencedColumnName = "id")
-  private ShopEntity shop;
+  private BigDecimal price;
+
+  private Integer stock;
+
+  /*@OneToOne(mappedBy = "", fetch = FetchType.LAZY)
+  private ShopEntity shopEntity;*/
 
 }
