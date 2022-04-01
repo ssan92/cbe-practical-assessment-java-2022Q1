@@ -20,4 +20,9 @@ public class StoreController {
     public StorePresenter findByName(@RequestParam String name) {
         return storeService.findByName(name);
     }
+
+    @PutMapping("/store")
+    public void updateStore(@RequestBody StorePresenter storePresenter) {
+        storeService.update(storePresenter);
+    }
 }

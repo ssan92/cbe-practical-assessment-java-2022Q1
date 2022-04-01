@@ -6,4 +6,6 @@ public interface StoreService {
     void save(StorePresenter storePresenter);
 
     StorePresenter findByName(String name);
+
+    void update(StorePresenter storePresenter);
 }

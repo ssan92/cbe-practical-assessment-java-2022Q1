@@ -33,4 +33,11 @@ public class StoreControllerTest {
         StorePresenter fakeName = storeController.findByName("fake name");
         Assertions.assertEquals(1, fakeName.getId());
     }
+
+    @Test
+    public void shouldUpdateStore() {
+        doNothing().when(storeService).update(any());
+        storeController.updateStore(StorePresenter.builder().build());
+        verify(storeService).update(any());
+    }
 }

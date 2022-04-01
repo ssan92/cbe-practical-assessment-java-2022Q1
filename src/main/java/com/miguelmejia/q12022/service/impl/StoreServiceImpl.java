@@ -36,6 +36,16 @@ public class StoreServiceImpl implements StoreService {
         return toPresenter(storeRepository.findByName(name));
     }
 
+    @Override
+    public void update(StorePresenter storePresenter) {
+        Store store = storeRepository.findById(storePresenter.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No existe la tienda a modificar"));
+        User user = userRepository.findById(storePresenter.getUserPresenter().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "No Existe el usuario con este Id"));
+        store.setUser(user);
+        store.setCategory(storePresenter.getCategory());
+        store.setName(storePresenter.getName());
+        storeRepository.save(store);
+    }
+
     private Store fromPresenter(StorePresenter storePresenter) {
         return modelMapper.map(storePresenter, Store.class);
     }

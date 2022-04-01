@@ -57,4 +57,13 @@ public class StoreServiceTest {
         StorePresenter fakeName = storeService.findByName("fakeName");
         Assertions.assertEquals(1, fakeName.getId());
     }
+
+    @Test
+    public void shouldUpdateStore() {
+        when(storeRepository.findById(any())).thenReturn(Optional.of(Store.builder().build()));
+        when(userRepository.findById(any())).thenReturn(Optional.of(User.builder().build()));
+        when(storeRepository.save(any())).thenReturn(Store.builder().build());
+        storeService.update(StorePresenter.builder().userPresenter(UserPresenter.builder().build()).build());
+        verify(storeRepository).save(any());
+    }
 }
