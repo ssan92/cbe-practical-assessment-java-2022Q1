@@ -5,9 +5,9 @@ package com.pichincha.store.repository.impl;
 import com.google.gson.Gson;
 import com.pichincha.store.configuration.Properties;
 import com.pichincha.store.domain.dto.ProductDto;
+import com.pichincha.store.domain.dto.legaci.Response;
 import com.pichincha.store.repository.ProductRepository;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -24,7 +24,7 @@ public class ProductRepositoryImpl implements ProductRepository {
   private final Properties properties;
 
   @Override
-  public List<ProductDto> getProducts() {
+  public Response getProducts() {
     Gson gson = new Gson();
     RestTemplate restTemplate = new RestTemplate();
 
@@ -33,6 +33,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         new HttpEntity<String>(null, new HttpHeaders()),
         String.class);
 
-     return Arrays.asList( gson.fromJson(ret.getBody().toString(), ProductDto[].class));
+     return gson.fromJson(ret.getBody().toString(), Response.class);
   }
 }

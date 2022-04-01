@@ -4,6 +4,7 @@ import com.pichincha.store.domain.Store;
 import com.pichincha.store.domain.dto.ProductDto;
 import com.pichincha.store.domain.dto.StoreDto;
 import com.pichincha.store.domain.dto.UserDto;
+import com.pichincha.store.domain.dto.legaci.Response;
 import com.pichincha.store.domain.enums.StoreStatus;
 import com.pichincha.store.repository.ProductRepository;
 import com.pichincha.store.repository.StoreRepository;
@@ -79,7 +80,7 @@ public class StoreServiceImpl implements StoreService {
   public String loadProducts(Long storeId) {
 //    Store store = storeRepository.getStoreById(storeId,StoreStatus.ACTIVE.name()).orElseThrow(()-> new NoResultException("store not found"));
 
-    List<ProductDto> products = productRepository.getProducts();
+    Response products = productRepository.getProducts();
     return null;
   }
 }

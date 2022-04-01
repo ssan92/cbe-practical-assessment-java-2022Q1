@@ -21,6 +21,6 @@ public class CustomExceptionHandler {
         JsonObject jsonObject= new JsonObject();
         jsonObject.addProperty("code","500");
         jsonObject.addProperty("message","invalid references: " + exception.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).header(jsonObject.toString()).build();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonObject.toString());
     }
 }
