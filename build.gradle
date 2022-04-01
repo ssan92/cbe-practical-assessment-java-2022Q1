@@ -31,6 +31,27 @@ dependencies {
 	testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.2'
 }
 
-tasks.named('test') {
+jacocoTestReport {
+	dependsOn test
+	reports {
+		html.destination file('build/jacocoHtml')
+		xml.enabled true
+		xml.destination file("build/jacoco/test.xml")
+	}
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					'**/com/miguelmejia/q12022/Q12022Application*',
+					'**/com/miguelmejia/q12022/presenter/**',
+					'**/com/miguelmejia/q12022/entity/**',
+					'**/com/miguelmejia/q12022/client/**',
+					'**/com/miguelmejia/q12022/config/**'
+			])
+		}))
+	}
+}
+
+test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
