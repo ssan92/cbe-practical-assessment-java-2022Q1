@@ -30,6 +30,9 @@ public class User implements Serializable {
     @Column(name = "user", nullable = false)
     private String user;
 
+    @Column(name = "type", nullable = false)
+    private String type;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
