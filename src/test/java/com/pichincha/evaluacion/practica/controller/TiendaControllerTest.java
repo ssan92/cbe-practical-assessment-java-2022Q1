@@ -22,16 +22,15 @@ class TiendaControllerTest {
     private EvaluationService evaluationService;
 
     @Test
-    void getStores() {
+    void getStores() throws Exception {
         //GIVEN
-        String id = "id";
         List<StoreEntity> storeEntity = new ArrayList<>();
         storeEntity.add(StoreEntity.builder().build());
         //WHEN
         Mockito.when(evaluationService.getStoresList()).thenReturn((List<StoreEntity>) storeEntity);
         //THEN
         mvc.perform(MockMvcRequestBuilders
-                        .get("/drawdown/accounts/{identification}", id)
+                        .get("/store/all")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
