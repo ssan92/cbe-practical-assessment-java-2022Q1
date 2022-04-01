@@ -50,4 +50,11 @@ public class StoreControllerTest {
         storeController.updateStore(StorePresenter.builder().build());
         verify(storeService).update(any());
     }
+
+    @Test
+    public void shouldDeleteStore() {
+        doNothing().when(storeService).deleteEmptyStore(any());
+        storeController.deleteEmptyStore(1L);
+        verify(storeService).deleteEmptyStore(any());
+    }
 }
