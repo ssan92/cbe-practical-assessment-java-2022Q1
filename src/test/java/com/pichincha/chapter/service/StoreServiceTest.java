@@ -32,6 +32,7 @@ public class StoreServiceTest {
                 .when(storeRepository).findByName(any());
         Store store = storeService.getStoreByName("Tienda x");
         Assert.assertNotNull(store);
+        Assert.assertSame("Tienda x", store.getName());
     }
 
     private List<Store> getListStore() {
